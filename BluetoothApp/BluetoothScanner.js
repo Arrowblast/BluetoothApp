@@ -13,7 +13,9 @@ export default class BluetoothScanner extends Component
     {
         super()
         this.state = {
+            database : [],
             devices : [],
+            devices_reg : [],
             spinner : false
         }
 
@@ -29,12 +31,54 @@ export default class BluetoothScanner extends Component
     updateValue(key, value) {
         this.setState({values: {...this.state.values, [key]: value}})
     }
+    async sendDeviceData(device)
+    {
+        await fetch(serverAddress+"api/v1/devices",
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    uuid: device.address,
+                    name: device.name,
+                })
+            })
+    }
     async scanAndConnect() {
         console.log("Looking for device...")
+        await fetch(serverAddress+"api/v1/devices",
+            {
+                method: 'GET'
+                }).then((response) => response.json())
+                .then((responseJson) => {
+                console.log(responseJson);
+                this.setState({
+                    database: responseJson
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
         this.setState({spinner: true, devices: []})
-        const unpaired = await RNBluetoothClassic.discoverDevices()
-        this.setState({spinner: false, devices: unpaired})
-        console.log(unpaired)
+
+        const allDevices = await RNBluetoothClassic.discoverDevices()
+
+
+        await Promise.all(allDevices.map((device) => {
+
+            if(!this.state.database.some((dev) => dev.uuid === device.id))
+            {
+                console.log("Adding device " + device.name)
+                this.sendDeviceData(device)
+            }
+
+        }));
+
+        this.setState({spinner: false, devices: allDevices})
+        console.log(allDevices)
     }
     render() {
         return (
@@ -46,6 +90,11 @@ export default class BluetoothScanner extends Component
                     textContent={'Loading...'}
                     textStyle={styles.spinnerTextStyle}
                 />
+                <View>
+                    <Text style={styles.header}>
+                        List of unpaired devices
+                    </Text>
+                </View>
                 <View>
                 {
                     this.state.devices.map((item, index) => (
@@ -60,14 +109,27 @@ export default class BluetoothScanner extends Component
                     ))
                 }
                 </View>
+                <View>
+                    <Text style={styles.header}>
+                        List of registered devices
+                    </Text>
+                </View>
             </View>
         )
     }
 }
 
+const serverAddress = "http://192.168.100.15:3000/"
+
 const styles = StyleSheet.create({
     spinnerTextStyle: {
         color: '#FFF'
+    },
+    header: {
+        padding: 10,
+        marginTop: 3,
+        backgroundColor: '#a7d968',
+        alignItems: 'center',
     },
     container: {
         padding: 10,
