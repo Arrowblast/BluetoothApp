@@ -26,8 +26,15 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import PresentationalComponent from './PresentationalComponent'
-
+import 'react-native-gesture-handler';
 import BluetoothScanner from "./BluetoothScanner";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from "./LoginScreen";
+
+
+const Stack = createStackNavigator()
+
 class App extends React.Component {
 
 
@@ -42,29 +49,15 @@ class App extends React.Component {
   updateState = () => this.setState({ myState: 'The state is updated' })
 
 
+
   render() {
     return (
-        <>
-          <StatusBar barStyle="dark-content" />
-          <SafeAreaView>
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={styles.scrollView}>
-              <Header />
-              {global.HermesInternal == null ? null : (
-                  <View style={styles.engine}>
-                    <Text style={styles.footer}>Engine: Hermes</Text>
-                  </View>
-              )}
-              <View style={styles.body}>
-                <BluetoothScanner/>
-
-
-
-              </View>
-            </ScrollView>
-          </SafeAreaView>
-        </>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Devices" component={BluetoothScanner} />
+          </Stack.Navigator>
+        </NavigationContainer>
     );
   }
 }

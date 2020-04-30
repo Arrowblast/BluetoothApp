@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="devices" uuid="647a2fcd-1715-4bfb-8b12-d67aa48ee057">
+    <data-source source="LOCAL" name="devices" uuid="8e3934be-1beb-4cf5-a2c7-b16ee911e3e8">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Robert Walicki\Documents\E-marketing\bluetooth-devices-in-range-master\bluetooth-devices-in-range-master\db\devices.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Robert Walicki\Documents\E-marketing\BluetoothServer\db\devices.sqlite</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/sqlite-jdbc-3.25.1.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>

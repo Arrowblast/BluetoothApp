@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BluetoothApp.iml" filepath="$PROJECT_DIR$/BluetoothApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../bluetooth-devices-in-range-master/bluetooth-devices-in-range-master.iml" filepath="$PROJECT_DIR$/../bluetooth-devices-in-range-master/bluetooth-devices-in-range-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../BluetoothServer/BluetoothServer.iml" filepath="$PROJECT_DIR$/../BluetoothServer/BluetoothServer.iml" />
     </modules>
   </component>
 </project>
