@@ -8,12 +8,13 @@ class DeviceList extends Component
         devices : this.props.devices
     }
     render() {
+        console.log(this.state.devices)
         return (
             <View>
                 {
                     this.state.devices.map((item, index) => (
                         <TouchableOpacity
-                            key = {item.id}
+                            key = {item.uuid}
                             style = {styles.container}
                             >
                             <Text style = {styles.text}>

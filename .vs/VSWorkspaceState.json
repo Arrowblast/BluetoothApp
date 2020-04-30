@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BluetoothApp",
+    "\\BluetoothApp\\windows\\BluetoothApp"
   ],
-  "SelectedNode": "\\BluetoothApp",
+  "SelectedNode": "\\BluetoothApp\\DesktopScreen.js",
   "PreviewInSolutionExplorer": false
 }
