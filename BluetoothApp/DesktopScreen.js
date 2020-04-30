@@ -78,7 +78,7 @@ class DesktopScreen extends Component {
             return (
                 <View style={styles.container}>
                     <Button title="Back" onPress={() => this.setUUID(0)}></Button>
-                    <Text style={[styles.header]}>In range:</Text>
+                    <Text style={[styles.header]}>Users within range:</Text>
                     <View>
                         {
                             this.state.range.map((item, index) => (
